@@ -14,7 +14,7 @@ app.use(cors());
 loadContainer(app);
 
 app.use(loadControllers(
-  'moocs/*/Infrastructure/Controller/*.ts',
+  'Controllers/*.ts',
   { cwd: __dirname }
 ));
 

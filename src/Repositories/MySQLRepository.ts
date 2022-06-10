@@ -1,4 +1,4 @@
-import connector from '../MySQL/MySQLPersistence';
+import connector from './MySQLPersistence';
 import { IMySQLRepository } from './IMySQLRepository';
 
 export class MySQLRepository implements IMySQLRepository {
