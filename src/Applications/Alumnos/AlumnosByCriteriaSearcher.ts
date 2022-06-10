@@ -1,10 +1,15 @@
 import { IMySQLRepository } from "../../Repositories/IMySQLRepository";
+import { IAlumnosByCriteriaSearcher } from "./IAlumnosByCriteriaSearcher";
 import query from "./SearchAlumnosQuery";
 
-export class AlumnosByCriteruaSearcher {
+export class AlumnosByCriteriaSearcher implements IAlumnosByCriteriaSearcher {
     private readonly _mysqlRepository: IMySQLRepository;
-    constructor(mysqlRepository: IMySQLRepository){
-        this._mysqlRepository = mysqlRepository;
+    constructor(MySQLRepository: IMySQLRepository){
+        this._mysqlRepository = MySQLRepository;
+    }
+
+    public async SearchAllAlumnos(){
+        return await this._mysqlRepository.getAll(query.GetAllAlumnos);
     }
 
     public async SearchQuantityAlumnosInscripted(){
@@ -27,15 +32,15 @@ export class AlumnosByCriteruaSearcher {
         return await this._mysqlRepository.getAll(query.QuantityAlumnosWithdrawn);
     }
 
-    public async SearchMateriasStatusByAlumno(alumnoId: number){
+    public async SearchMateriasStatusByAlumno(alumnoId: string){
         return await this._mysqlRepository.getOne(alumnoId, query.MateriasStatusByAlumno);
     }
 
-    public async SearchCalificacionesAverageByAlumno(alumnoId: number){
+    public async SearchCalificacionesAverageByAlumno(alumnoId: string){
         return await this._mysqlRepository.getOne(alumnoId, query.CalificacionesAverageByAlumno);
     }
 
-    public async SearchCalificacionesAverageByMateria(materiaId: number){
+    public async SearchCalificacionesAverageByMateria(materiaId: string){
         return await this._mysqlRepository.getOne(materiaId, query.CalificacionesAverageByMateria);
     }
 }

@@ -7,7 +7,7 @@ export class MySQLRepository implements IMySQLRepository {
         return result;
     }
     
-    public async getOne(id: number, query: string): Promise<any> {
+    public async getOne(id: string, query: string): Promise<any> {
         const [result]: any = await connector.execute(query, [id]);
         return result;
     }
@@ -20,7 +20,7 @@ export class MySQLRepository implements IMySQLRepository {
         await connector.execute(query, [...entry]);
     }
 
-    public async delete(id: number, query: string): Promise<void> {
+    public async delete(id: string, query: string): Promise<void> {
         await connector.execute(query, [id]);
     }
 }
