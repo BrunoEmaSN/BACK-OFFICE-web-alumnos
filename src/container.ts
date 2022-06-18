@@ -6,7 +6,7 @@ import { MySQLRepository } from "./Repositories/MySQLRepository";
 import { AlumnosByCriteriaSearcher } from "./Applications/Alumnos/AlumnosByCriteriaSearcher";
 import { DocentesByCriteriaSearcher } from "./Applications/Docentes/DocentesByCriteriaSearcher";
 import { AsignaturasByCriteriaSearcher } from "./Applications/Asignaturas/AsignaturasByCriteriaSearcher";
-
+import { MesasExamenesByCriteriaSearcher } from "./Applications/MesasExamenes/MesasExamenesByCriteriaSearcher";
 
 export default (app: express.Application): void => {
     const container = createContainer({
@@ -16,11 +16,9 @@ export default (app: express.Application): void => {
     container.register({
         MySQLRepository: asClass(MySQLRepository).scoped(),
         AlumnosByCriteriaSearcher: asClass(AlumnosByCriteriaSearcher).scoped(),
-
+        AsignaturasByCriteriaSearcher: asClass(AsignaturasByCriteriaSearcher).scoped(),
         DocentesByCriteriaSearcher: asClass(DocentesByCriteriaSearcher).scoped(),
-
-        AsignaturasByCriteriaSearcher: asClass(AsignaturasByCriteriaSearcher).scoped()
-
+        MesasExamenesByCritreriaSearcher: asClass(MesasExamenesByCriteriaSearcher).scoped(),
     });
 
     app.use(scopePerRequest(container));
