@@ -4,7 +4,7 @@ import { BaseController } from "./BaseController";
 import { IClasesByCriteriaSearcher } from '../Applications/Clases/IClasesByCriteriaSearcher';
 
 @route('/clases')
-export class Clases extends BaseController {
+export class ClasesContorller extends BaseController {
     private readonly _clasesByCriteriaSearcher: IClasesByCriteriaSearcher;
     constructor(ClasesByCriteriaSearcher: IClasesByCriteriaSearcher){
         super();
