@@ -4,7 +4,7 @@ import { BaseController } from "./BaseController";
 import { IAsignaturasByCriteriaSearcher } from '../Applications/Asignaturas/IAsignaturasByCriteriaSearcher';
 
 @route('/asignaturas')
-export class Asignaturas extends BaseController {
+export class AsignaturasController extends BaseController {
     private readonly _asignaturasByCriteriaSearcher: IAsignaturasByCriteriaSearcher;
     constructor(AsignaturasByCriteriaSearcher: IAsignaturasByCriteriaSearcher){
         super();
@@ -46,6 +46,4 @@ export class Asignaturas extends BaseController {
             this.handleException(error, res);
         }
     }
-
-   
 }
