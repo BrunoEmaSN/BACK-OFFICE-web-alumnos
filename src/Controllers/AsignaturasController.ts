@@ -46,4 +46,16 @@ export class AsignaturasController extends BaseController {
             this.handleException(error, res);
         }
     }
+
+    @route('/quantityHoursAsignament')
+    @GET()
+    public async quantityHoursAsignament(req: Request, res: Response){
+        try{
+            const hours = await this._asignaturasByCriteriaSearcher
+                .SearchHoursAsignament();
+            res.status(200).send(hours);
+        } catch(error){
+            this.handleException(error, res);
+        }
+    }
 }
