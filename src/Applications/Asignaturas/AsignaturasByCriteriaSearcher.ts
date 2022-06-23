@@ -1,4 +1,4 @@
-import moment, { months } from "moment";
+import moment from "moment";
 import { IMySQLRepository } from "../../Repositories/IMySQLRepository";
 import { unenabledDays } from "../../Services/no-laborables.services";
 import { IAsignaturasByCriteriaSearcher } from "./IAsignaturasByCriteriaSearcher";
@@ -68,6 +68,12 @@ export class AsignaturasByCriteriaSearcher implements IAsignaturasByCriteriaSear
         hoursAsignament.map((hour: { dia: string; minutos: number; }) => {
             this.AddHoursByDay(hour.dia, hour.minutos);
         });
+        
+        let quantityHoursByYear = this.SumAllHoursByWeek() * quantityWeeksByYear;
+        let quantityHoursByMonth = this.SumAllHoursByWeek() * quantityWeeksByMonth;
+        let quantityHoursByWeek = this.SumAllHoursByWeek();
+        let quantityHoursToday = this.GetOrSubstracHoursByDay(today, 1);
+
         const hoursYearByAsignaturas = hoursAsignamentByAsignaturas
             .map((hour: {materia: string; minutos: number}) => ({
                 materia: hour.materia,
@@ -85,11 +91,22 @@ export class AsignaturasByCriteriaSearcher implements IAsignaturasByCriteriaSear
                 materia: hour.materia,
                 horas: (hour.minutos / 60),
             }));
-        
-        let quantityHoursByYear = this.SumAllHoursByWeek() * quantityWeeksByYear;
-        let quantityHoursByMonth = this.SumAllHoursByWeek() * quantityWeeksByMonth;
-        let quantityHoursByWeek = this.SumAllHoursByWeek();
-        let quantityHoursToday = this.GetOrSubstracHoursByDay(today, 1);
+
+        let hoursByAsignaturas:{
+            materia: string;
+            year: number | undefined;
+            month: number | undefined;
+            week: number | undefined;
+        }[] = [];
+
+        hoursAsignament.map((hour: { materias: string; }) => {
+            hoursByAsignaturas.push({
+                materia: hour.materias,
+                year: hoursYearByAsignaturas.find(h => h.materia === hour.materias)?.horas,
+                month: hoursMonthByAsignaturas.find(h => h.materia === hour.materias)?.horas,
+                week: hoursWeekByAsignaturas.find(h => h.materia === hour.materias)?.horas,
+            });
+        });
 
         const daysNotAsignamentByYear = daysNotAsignament
             .map((month) => Object.keys(month));
@@ -102,15 +119,14 @@ export class AsignaturasByCriteriaSearcher implements IAsignaturasByCriteriaSear
                     .format('yyyy-MM-D');
                 return moment(dayNotAsignament).isBetween(startWeek, endWeek);
             });
-        console.log('hola')
 
         daysNotAsignamentByMonth.map((day) => {
             const dateWeek = new Date(`${now.getFullYear()}-${now.getMonth()}-${day}`);
             const dayOfWeek = days[dateWeek.getDay()];
             const daysRemove = hoursAsignament.filter((hour) => hour.dia === dayOfWeek);
-            daysRemove.map((dayRemove: { materia: string; minutos: number; }) => {
+            daysRemove.map((dayRemove: { materias: string; minutos: number; }) => {
                 const index = hoursMonthByAsignaturas
-                    .findIndex((hour) => hour.materia === dayRemove.materia);
+                    .findIndex((hour) => hour.materia === dayRemove.materias);
                 hoursMonthByAsignaturas[index].horas -= dayRemove.minutos / 60;
             })
             quantityHoursByMonth += this.GetOrSubstracHoursByDay(dayOfWeek, -1);
@@ -120,29 +136,15 @@ export class AsignaturasByCriteriaSearcher implements IAsignaturasByCriteriaSear
             const dateWeek = new Date(`${now.getFullYear()}-${now.getMonth()}-${day}`);
             const dayOfWeek = days[dateWeek.getDay()];
             const daysRemove = hoursAsignament.filter((hour) => hour.dia === dayOfWeek);
-            daysRemove.map((dayRemove: { materia: string; minutos: number; }) => {
+            daysRemove.map((dayRemove: { materias: string; minutos: number; }) => {
                 const index = hoursWeekByAsignaturas
-                    .findIndex((hour) => hour.materia === dayRemove.materia);
+                    .findIndex((hour) => hour.materia === dayRemove.materias);
                 hoursWeekByAsignaturas[index].horas -= dayRemove.minutos / 60;
             })
             this.RemoveHoursByDay(dayOfWeek);
         });
 
-        let hoursByAsignaturas:{
-            materia: string;
-            year: { materia: string; horas: number; } | undefined;
-            month: { materia: string; horas: number; } | undefined;
-            week: { materia: string; horas: number; } | undefined;
-        }[] = [];
-
-        hoursAsignament.map((hour: { matria: string; }) => {
-            hoursByAsignaturas.push({
-                materia: hour.matria,
-                year: hoursYearByAsignaturas.find(h => h.materia === hour.matria),
-                month: hoursMonthByAsignaturas.find(h => h.materia === hour.matria),
-                week: hoursWeekByAsignaturas.find(h => h.materia === hour.matria),
-            });
-        });
+        console.log(hoursByAsignaturas);
 
         return {
             quantityHoursByYear: quantityHoursByYear.toFixed(2),
