@@ -11,7 +11,6 @@ const QuantityAsistenciasByCurso = `SELECT
     
 const QuantityAsistenciasByAsignatura = `SELECT
     COUNT (a.estado) as cantidad,
-    
     FROM asistencias a
     INNER JOIN clases c
     ON a.clase_id = c.id
@@ -21,7 +20,6 @@ const QuantityAsistenciasByAsignatura = `SELECT
 
 const QuantityAsistenciasByDay = `SELECT
     COUNT (a.estado) as cantidad,
-        
     FROM asistencias a
     INNER JOIN clases c
     ON a.clase_id = c.id
@@ -29,13 +27,58 @@ const QuantityAsistenciasByDay = `SELECT
     AND a.estado = 'Presente'`;
 
     
-const QuantityAsistenciasByWeek = ``;
+const QuantityAsistenciasByWeek = `
+
+`;
 
 
-const QuantityAsistenciasByMonth = ``;
+const QuantityAsistenciasByMonth = `SELECT
+    COUNT (a.estado) as cantidad,            
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE MONTH(a.fecha) = ?
+    AND a.estado = Presente`;
 
     
-const QuantityAsistenciasByYear = ``;
+const QuantityAsistenciasByYear = `SELECT
+    COUNT (a.estado) as cantidad,            
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE YEAR(a.fecha) = ?
+    AND a.estado = Presente`;
+
+
+    
+const QuantityAsistenciasByAsignaturaAndAlumno = `SELECT
+    COUNT (a.estado) as cantidad,
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE c.materia_id = ?
+    AND a.alumno_id = ?
+    AND a.estado = 'Presente'`;
+
+
+const QuantityAsistenciasByMonthAndAlumno = `SELECT
+    COUNT (a.estado) as cantidad,            
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE MONTH(a.fecha) = ?
+    AND a.alumno_id = ?
+    AND a.estado = Presente`;
+
+    
+const QuantityAsistenciasByYearAndAlumno = `SELECT
+    COUNT (a.estado) as cantidad,            
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE YEAR(a.fecha) = ?
+    AND a.alumno_id = ?
+    AND a.estado = Presente`;
 
 
 const QuantityInasistenciasByCurso = `SELECT
@@ -65,16 +108,58 @@ const QuantityInasistenciasByDay = `SELECT
     INNER JOIN clases c
     ON a.clase_id = c.id
     WHERE c.dias = ?
-    AND a.estado = 'Ausente'`;
+    AND a.estado = Ausente`;
 
-    
 const QuantityInasistenciasByWeek = ``;
 
+const QuantityInasistenciasByMonth = `SELECT
+    COUNT (a.estado) as cantidad,            
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE MONTH(a.fecha) = ?
+    AND a.estado = Ausente`;
 
-const QuantityInasistenciasByMonth = ``;
+const QuantityInasistenciasByYear = `SELECT
+    COUNT (a.estado) as cantidad,            
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE YEAR(a.fecha) = ?
+    AND a.estado = Ausente`;
 
     
-const QuantityInasistenciasByYear = ``;
+const QuantityInasistenciasByAsignaturaAndAlumno = `SELECT
+    COUNT (a.estado) as cantidad,
+    
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE c.materia_id = ?
+    AND a.alumno_id = ?
+    AND a.estado = 'Ausente'`;
+
+
+const QuantityInasistenciasByMonthAndAlumno = `SELECT
+    COUNT (a.estado) as cantidad,            
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE MONTH(a.fecha) = ?
+    AND a.alumno_id = ?
+    AND a.estado = Ausente`;
+
+const QuantityInasistenciasByYearAndAlumno = `SELECT
+    COUNT (a.estado) as cantidad,            
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE YEAR(a.fecha) = ?
+    AND a.alumno_id = ?
+    AND a.estado = Ausente`;
+
+
+
 
 const QuantityRetrasosByCurso = `SELECT
     COUNT (a.estado) as cantidad,
@@ -83,7 +168,7 @@ const QuantityRetrasosByCurso = `SELECT
     INNER JOIN clases c
     ON a.clase_id = c.id
     WHERE c.curso_id = ?
-    AND a.estado = 'Retraso'`;
+    AND a.estado = Retraso`;
 
     
 const QuantityRetrasosByAsignatura = `SELECT
@@ -93,7 +178,7 @@ const QuantityRetrasosByAsignatura = `SELECT
     INNER JOIN clases c
     ON a.clase_id = c.id
     WHERE c.materia_id = ?
-    AND a.estado = 'Retraso'`;
+    AND a.estado = Retraso`;
 
 
 const QuantityRetrasosByDay = `SELECT
@@ -103,29 +188,98 @@ const QuantityRetrasosByDay = `SELECT
     INNER JOIN clases c
     ON a.clase_id = c.id
     WHERE c.dias = ?
-    AND a.estado = 'Retraso'`;
+    AND a.estado = Retraso`;
+
+
+//primer y segundo valor fecha
+
+const QuantityRetrasosByWeek = `
+`;
+
+
+const QuantityRetrasosByMonth = `SELECT
+    COUNT (a.estado) as cantidad,            
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE MONTH(a.fecha) = ?
+    AND a.estado = Retraso`;
 
     
-const QuantityRetrasosByWeek = ``;
+const QuantityRetrasosByYear = `SELECT
+    COUNT (a.estado) as cantidad,            
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE YEAR(a.fecha) = ?
+    AND a.estado = Retraso`;
 
 
-const QuantityRetrasosByMonth = ``;
+
 
     
-const QuantityRetrasosByYear = ``;
+const QuantityRetrasosByAsignaturaAndAlumno = `SELECT
+    COUNT (a.estado) as cantidad,
+    
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE c.materia_id = ?
+    AND a.alumno_id = ?
+    AND a.estado = Retraso`;
+
+
+const QuantityRetrasosByMonthAndAlumno = `SELECT
+    COUNT (a.estado) as cantidad,            
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE MONTH(a.fecha) = ?
+    AND a.alumno_id = ?
+    AND a.estado = Retraso`;
+
+    
+const QuantityRetrasosByYearAndAlumno = `SELECT
+    COUNT (a.estado) as cantidad,            
+    FROM asistencias a
+    INNER JOIN clases c
+    ON a.clase_id = c.id
+    WHERE YEAR(a.fecha) = ?
+    AND a.alumno_id = ?
+    AND a.estado = Retraso`;
 
 
 export default {
     QuantityAsistenciasByCurso,
     QuantityAsistenciasByAsignatura,
     QuantityAsistenciasByDay,
+    QuantityAsistenciasByWeek,
+    QuantityAsistenciasByMonth,
+    QuantityAsistenciasByYear,
 
+    QuantityAsistenciasByAsignaturaAndAlumno,
+    QuantityAsistenciasByMonthAndAlumno,
+    QuantityAsistenciasByYearAndAlumno,
 
     QuantityInasistenciasByCurso,
     QuantityInasistenciasByAsignatura,
     QuantityInasistenciasByDay,
+    QuantityInasistenciasByWeek,
+    QuantityInasistenciasByMonth,
+    QuantityInasistenciasByYear,
+
+    QuantityInasistenciasByAsignaturaAndAlumno,
+    QuantityInasistenciasByMonthAndAlumno,
+    QuantityInasistenciasByYearAndAlumno,
 
     QuantityRetrasosByCurso,
     QuantityRetrasosByAsignatura,
-    QuantityRetrasosByDay
+    QuantityRetrasosByDay,
+    QuantityRetrasosByWeek,
+    QuantityRetrasosByMonth,
+    QuantityRetrasosByYear,
+
+    QuantityRetrasosByAsignaturaAndAlumno,
+    QuantityRetrasosByMonthAndAlumno,
+    QuantityRetrasosByYearAndAlumno
 }

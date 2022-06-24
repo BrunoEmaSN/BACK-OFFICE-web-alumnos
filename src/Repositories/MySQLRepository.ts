@@ -12,6 +12,11 @@ export class MySQLRepository implements IMySQLRepository {
         return result;
     }
 
+    public async getAllByParams(params: Array<string>, query: string): Promise<any> {
+        const [result]: any = await connector.execute(query, [params]);
+        return result;
+    }
+
     public async insert(entry: any, query: string): Promise<void> {
         await connector.execute(query, [...entry]);
     }
