@@ -11,24 +11,35 @@ export class ClasesContorller extends BaseController {
         this._clasesByCriteriaSearcher = ClasesByCriteriaSearcher;
     }
 
-    @route('/asignaturasByDay')
+    @GET()
+    public async getAll(req: Request, res: Response){
+        try{
+            const clases = await this._clasesByCriteriaSearcher
+                .SearchGetAllClases();
+            res.status(200).send(clases);
+        } catch(error) {
+            this.handleException(error, res);
+        }
+    }
+
+    @route('/asignaturasByDay/:day')
     @GET()
     public async asignaturasByDay(req: Request, res: Response){
         try{
             const asignaturas = await this._clasesByCriteriaSearcher
-                .SearchQuantityAsignatureByDay(req.params.id);
+                .SearchQuantityAsignatureByDay(req.params.day);
             res.status(200).send(asignaturas);
         } catch(error){
             this.handleException(error, res);
         }
     }
 
-    @route('/docentesByDay')
+    @route('/docentesByDay/:day')
     @GET()
     public async docentesByDay(req: Request, res: Response){
         try{
             const docentes = await this._clasesByCriteriaSearcher
-                .SearchQuantityDocentesByDay(req.params.id);
+                .SearchQuantityDocentesByDay(req.params.day);
             res.status(200).send(docentes);
         } catch(error){
             this.handleException(error, res);

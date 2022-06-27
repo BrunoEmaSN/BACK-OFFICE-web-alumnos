@@ -4,7 +4,7 @@ import { BaseController } from "./BaseController";
 import { IDocentesByCriteriaSearcher } from '../Applications/Docentes/IDocentesByCriteriaSearcher';
 
 route('/docentes');
-export class DocentesControlelr extends BaseController {
+export class DocentesController extends BaseController {
     private readonly _docentesByCriteriaSearcher: IDocentesByCriteriaSearcher;
     constructor(DocentesByCriteriaSearcher: IDocentesByCriteriaSearcher){
         super();

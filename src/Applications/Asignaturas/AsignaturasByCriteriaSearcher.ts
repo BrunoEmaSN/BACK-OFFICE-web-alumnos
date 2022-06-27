@@ -8,6 +8,10 @@ export class AsignaturasByCriteriaSearcher implements IAsignaturasByCriteriaSear
         this._mysqlRepository = MySQLRepository;
     }
 
+    public async SearchGetAllAsignaturas(): Promise<any> {
+        return await this._mysqlRepository.getAll(query.GetAllAsignaturas);
+    }
+
     public async SearchAlumnosStatusFreeByAsignatura(asignaturaId: string){
         return await this._mysqlRepository.getOne(asignaturaId, query.QuantityFreeAlumnos);
     }

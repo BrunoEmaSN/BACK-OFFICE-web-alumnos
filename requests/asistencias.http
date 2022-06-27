@@ -1,0 +1,77 @@
+@api = http://localhost:5000
+
+
+//GET ALL ASISTENCIAS
+GET {{api}}/asistencias
+
+
+// CANTIDAD DE ASISTENCIAS POR CURSO
+###
+GET {{api}}/asistencias/cantidadAsistenciasByCurso/1
+
+
+// CANTIDAD DE ASISTENCIAS POR MATERIA
+###
+GET {{api}}/asistencias/cantidadAsistenciasByAsignatura/1
+
+// CANTIDAD DE ASISTENCIAS POR MATERIA Y ALUMNO
+###
+GET {{api}}/asistencias/cantidadAsistenciasByAsignaturaAndAlumno/1/39819973
+
+// CANTIDAD DE ASISTENCIAS POR DIA
+###
+GET {{api}}/asistencias/cantidadAsistenciasByDay/Lunes
+
+###
+// CANTIDAD DE ASISTENCIAS POR MES
+GET {{api}}/asistencias/cantidadAsistenciasByMonth/02
+
+###
+// CANTIDAD DE ASISTENCIAS POR AÑO
+GET {{api}}/asistencias/cantidadAsistenciasByYear/2022
+
+
+// CANTIDAD DE INASISTENCIAS POR CURSO
+###
+GET {{api}}/asistencias/cantidadInasistenciasByCurso/2
+
+
+// CANTIDAD DE INASISTENCIAS POR MATERIA
+###
+GET {{api}}/asistencias/cantidadInasistenciasByAsignatura/2
+
+
+// CANTIDAD DE INASISTENCIAS POR DIA
+###
+GET {{api}}/asistencias/cantidadInasistenciasByDay/Viernes
+
+###
+// CANTIDAD DE INASISTENCIAS POR MES
+GET {{api}}/asistencias/cantidadInasistenciasByMonth/03
+
+###
+// CANTIDAD DE INASISTENCIAS POR AÑO
+GET {{api}}/asistencias/cantidadInasistenciasByYear/2022
+
+
+// CANTIDAD DE RETRASOS POR CURSO
+###
+GET {{api}}/asistencias/cantidadRetrasosByCurso/1
+
+
+// CANTIDAD DE RETRASOS POR MATERIA
+###
+GET {{api}}/asistencias/cantidadRetrasosByAsignatura/5
+
+
+// CANTIDAD DE RETRASOS POR DIA
+###
+GET {{api}}/asistencias/cantidadRetrasosByDay/Jueves
+
+###
+// CANTIDAD DE RETRASOS POR MES
+GET {{api}}/asistencias/cantidadRetrasosByMonth/02
+
+###
+// CANTIDAD DE RETRASOS POR AÑO
+GET {{api}}/asistencias/cantidadRetrasosByYear/2022

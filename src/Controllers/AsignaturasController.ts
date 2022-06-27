@@ -11,7 +11,18 @@ export class AsignaturasController extends BaseController {
         this._asignaturasByCriteriaSearcher = AsignaturasByCriteriaSearcher;
     }
 
-    @route('/alumnosFree')
+    @GET()
+    public async getAll(req: Request, res: Response){
+        try{
+            const asignaturas = await this._asignaturasByCriteriaSearcher
+                .SearchGetAllAsignaturas();
+            res.status(200).send(asignaturas);
+        } catch(error) {
+            this.handleException(error, res);
+        }
+    }
+
+    @route('/alumnosFree/:id')
     @GET()
     public async alumnosFree(req: Request, res: Response){
         try{
@@ -23,7 +34,7 @@ export class AsignaturasController extends BaseController {
         }
     }
 
-    @route('/alumnosRegular')
+    @route('/alumnosRegular/:id')
     @GET()
     public async alumnosRegular(req: Request, res: Response){
         try{
@@ -35,7 +46,7 @@ export class AsignaturasController extends BaseController {
         }
     }
 
-    @route('/alumnosPromoted')
+    @route('/alumnosPromoted/:id')
     @GET()
     public async alumnosPromoted(req: Request, res: Response){
         try{

@@ -1,4 +1,7 @@
 export interface IAsistenciasByCriteriaSearcher {
+
+    SearchGetAllAsistencias(): Promise<any>;
+
     SearchQuantityAsistenciasByCurso(cursoId: string): Promise<any>;
     SearchQuantityAsistenciasByAsignatura(asignaturaId: string): Promise<any>;
     SearchQuantityAsistenciasByDay(day: string): Promise<any>;

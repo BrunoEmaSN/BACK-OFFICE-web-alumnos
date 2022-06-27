@@ -11,7 +11,18 @@ export class AsistenciasController extends BaseController {
         this._asistenciasByCriteriaSearcher = AsistenciasByCriteriaSearcher;
     }
 
-    @route('/cantidadAsistenciasByCurso')
+    @GET()
+    public async getAll(req: Request, res: Response){
+        try{
+            const asistencias = await this._asistenciasByCriteriaSearcher
+                .SearchGetAllAsistencias();
+            res.status(200).send(asistencias);
+        } catch(error) {
+            this.handleException(error, res);
+        }
+    }
+
+    @route('/cantidadAsistenciasByCurso/:id')
     @GET()
     public async asistenciasByCurso(req: Request, res: Response){
         try{
@@ -23,7 +34,7 @@ export class AsistenciasController extends BaseController {
         }
     }
 
-    @route('/cantidadAsistenciasByAsignatura')
+    @route('/cantidadAsistenciasByAsignatura/:id')
     @GET()
     public async asistenciasByAsignatura(req: Request, res: Response){
         try{
@@ -35,19 +46,55 @@ export class AsistenciasController extends BaseController {
         }
     }
 
-    @route('/cantidadAsistenciasByDay')
+    @route('/cantidadAsistenciasByDay/:day')
     @GET()
     public async asistenciasByDay(req: Request, res: Response){
         try{
             const cantidad = await this._asistenciasByCriteriaSearcher
-                .SearchQuantityAsistenciasByDay(req.params.id);
+                .SearchQuantityAsistenciasByDay(req.params.day);
             res.status(200).send(cantidad);
         } catch(error){
             this.handleException(error, res);
         }
     }
 
-    @route('/cantidadInasistenciasByCurso')
+    @route('/cantidadAsistenciasByMonth/:month')
+    @GET()
+    public async asistenciasByMonth(req: Request, res: Response){
+        try{
+            const cantidad = await this._asistenciasByCriteriaSearcher
+                .SearchQuantityAsistenciasByMonth(req.params.month);
+            res.status(200).send(cantidad);
+        } catch(error){
+            this.handleException(error, res);
+        }
+    }
+
+    @route('/cantidadAsistenciasByYear/:year')
+    @GET()
+    public async asistenciasByYear(req: Request, res: Response){
+        try{
+            const cantidad = await this._asistenciasByCriteriaSearcher
+                .SearchQuantityAsistenciasByYear(req.params.year);
+            res.status(200).send(cantidad);
+        } catch(error){
+            this.handleException(error, res);
+        }
+    }
+
+    @route('/cantidadAsistenciasByAsignaturaAndAlumno/:asignatura/:alumno')
+    @GET()
+    public async asistenciasByAsignaturaAndAlumno(req: Request, res: Response){
+        try{
+            const cantidad = await this._asistenciasByCriteriaSearcher
+                .SearchQuantityAsistenciasByAsignaturaAndAlumno(req.params.asignatura, req.params.alumno);
+            res.status(200).send(cantidad);
+        } catch(error){
+            this.handleException(error, res);
+        }
+    }
+
+    @route('/cantidadInasistenciasByCurso/:id')
     @GET()
     public async inasistenciasByCurso(req: Request, res: Response){
         try{
@@ -59,7 +106,7 @@ export class AsistenciasController extends BaseController {
         }
     }
 
-    @route('/cantidadInasistenciasByAsignatura')
+    @route('/cantidadInasistenciasByAsignatura/:id')
     @GET()
     public async inasistenciasByAsignatura(req: Request, res: Response){
         try{
@@ -71,19 +118,43 @@ export class AsistenciasController extends BaseController {
         }
     }
 
-    @route('/cantidadInasistenciasByDay')
+    @route('/cantidadInasistenciasByDay/:day')
     @GET()
     public async inasistenciasByDay(req: Request, res: Response){
         try{
             const cantidad = await this._asistenciasByCriteriaSearcher
-                .SearchQuantityInasistenciasByDay(req.params.id);
+                .SearchQuantityInasistenciasByDay(req.params.day);
             res.status(200).send(cantidad);
         } catch(error){
             this.handleException(error, res);
         }
     }
 
-    @route('/cantidadRetrasosByCurso')
+    @route('/cantidadInasistenciasByMonth/:month')
+    @GET()
+    public async inasistenciasByMonth(req: Request, res: Response){
+        try{
+            const cantidad = await this._asistenciasByCriteriaSearcher
+                .SearchQuantityInasistenciasByMonth(req.params.month);
+            res.status(200).send(cantidad);
+        } catch(error){
+            this.handleException(error, res);
+        }
+    }
+
+    @route('/cantidadInasistenciasByYear/:year')
+    @GET()
+    public async inasistenciasByYear(req: Request, res: Response){
+        try{
+            const cantidad = await this._asistenciasByCriteriaSearcher
+                .SearchQuantityInasistenciasByYear(req.params.year);
+            res.status(200).send(cantidad);
+        } catch(error){
+            this.handleException(error, res);
+        }
+    }
+
+    @route('/cantidadRetrasosByCurso/:id')
     @GET()
     public async retrasosByCurso(req: Request, res: Response){
         try{
@@ -95,7 +166,7 @@ export class AsistenciasController extends BaseController {
         }
     }
 
-    @route('/cantidadRetrasosByAsignatura')
+    @route('/cantidadRetrasosByAsignatura/:id')
     @GET()
     public async retrasosByAsignatura(req: Request, res: Response){
         try{
@@ -107,12 +178,36 @@ export class AsistenciasController extends BaseController {
         }
     }
 
-    @route('/cantidadRetrasosByDay')
+    @route('/cantidadRetrasosByDay/:day')
     @GET()
     public async retrasosByDay(req: Request, res: Response){
         try{
             const cantidad = await this._asistenciasByCriteriaSearcher
-                .SearchQuantityRetrasosByDay(req.params.id);
+                .SearchQuantityRetrasosByDay(req.params.day);
+            res.status(200).send(cantidad);
+        } catch(error){
+            this.handleException(error, res);
+        }
+    }
+
+    @route('/cantidadRetrasosByMonth/:month')
+    @GET()
+    public async retrasosByMonth(req: Request, res: Response){
+        try{
+            const cantidad = await this._asistenciasByCriteriaSearcher
+                .SearchQuantityRetrasosByMonth(req.params.month);
+            res.status(200).send(cantidad);
+        } catch(error){
+            this.handleException(error, res);
+        }
+    }
+
+    @route('/cantidadRetrasosByYear/:year')
+    @GET()
+    public async retrasosByYear(req: Request, res: Response){
+        try{
+            const cantidad = await this._asistenciasByCriteriaSearcher
+                .SearchQuantityRetrasosByYear(req.params.year);
             res.status(200).send(cantidad);
         } catch(error){
             this.handleException(error, res);

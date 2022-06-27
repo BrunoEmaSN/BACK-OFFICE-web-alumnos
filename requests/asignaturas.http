@@ -1,0 +1,22 @@
+@api = http://localhost:5000
+
+// GET ALL 
+GET {{api}}/asignaturas
+
+
+//CANTIDAD DE ALUMNOS LIBRES
+###
+GET {{api}}/asignaturas/alumnosFree/1
+
+
+//CANTIDAD DE ALUMNOS REGULARES
+###
+GET {{api}}/asignaturas/alumnosRegular/1
+
+
+//CANTIDAD DE ALUMNOS PROMOCIONALES
+###
+GET {{api}}/asignaturas/alumnosPromoted/1
+
+
+//HORAS ASIGNADAS

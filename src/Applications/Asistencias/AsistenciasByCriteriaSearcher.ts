@@ -9,6 +9,11 @@ export class AsistenciasByCriteriaSearcher implements IAsistenciasByCriteriaSear
         this._mysqlRepository = MySQLRepository;
     }
 
+    public async SearchGetAllAsistencias(): Promise<any> {
+        return await this._mysqlRepository.getAll(query.GetAllAsistencias);
+    }
+
+
     public async SearchQuantityAsistenciasByCurso(cursoId: string){
         return await this._mysqlRepository.getOne(cursoId, query.QuantityAsistenciasByCurso);
     }

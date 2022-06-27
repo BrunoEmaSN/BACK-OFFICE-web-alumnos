@@ -8,6 +8,9 @@ export class ClasesByCriteriaSearcher implements IClasesByCriteriaSearcher {
         this._mysqlRepository = MySQLRepository;
     }
 
+    public async SearchGetAllClases(): Promise<any> {
+        return await this._mysqlRepository.getAll(query.GetAllClases);
+    }
 
     public async SearchQuantityAsignatureByDay(day: string){
         return await this._mysqlRepository.getOne(day, query.QuantityAsignaturasByDay);
