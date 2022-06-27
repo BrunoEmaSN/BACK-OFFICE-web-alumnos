@@ -166,7 +166,7 @@ export class AsignaturasByCriteriaSearcher implements IAsignaturasByCriteriaSear
             case 'Miercoles':
                 this._hoursOfWeek.wednesday += minutos / 60;
                 break;
-            case 'Juesves':
+            case 'Jueves':
                 this._hoursOfWeek.thursday += minutos / 60;
                 break;
             case 'Viernes':
@@ -189,7 +189,7 @@ export class AsignaturasByCriteriaSearcher implements IAsignaturasByCriteriaSear
             case 'Miercoles':
                 result += this._hoursOfWeek.wednesday * positiveOrNegative;
                 break;
-            case 'Juesves':
+            case 'Jueves':
                 result += this._hoursOfWeek.thursday * positiveOrNegative;
                 break;
             case 'Viernes':
@@ -213,7 +213,7 @@ export class AsignaturasByCriteriaSearcher implements IAsignaturasByCriteriaSear
             case 'Miercoles':
                 this._hoursOfWeek.wednesday = 0;
                 break;
-            case 'Juesves':
+            case 'Jueves':
                 this._hoursOfWeek.thursday = 0;
                 break;
             case 'Viernes':
