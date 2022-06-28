@@ -9,8 +9,8 @@ export interface IAsistenciasByCriteriaSearcher {
     SearchQuantityAsistenciasByYear(date: string): Promise<any>;
 
     SearchQuantityAsistenciasByAsignaturaAndAlumno(asignaturaId: string, alumnoId: string): Promise<any>;
-    SearchQuantityAsistenciasByMonthAndAlumno(asignaturaId: string, alumnoId: string): Promise<any>;
-    SearchQuantityAsistenciasByYearAndAlumno(asignaturaId: string, alumnoId: string): Promise<any>;
+    SearchQuantityAsistenciasByMonthAndAlumno(date: string, alumnoId: string): Promise<any>;
+    SearchQuantityAsistenciasByYearAndAlumno(date: string, alumnoId: string): Promise<any>;
 
     SearchQuantityInasistenciasByCurso(cursoId: string): Promise<any>;
     SearchQuantityInasistenciasByAsignatura(asignaturaId: string): Promise<any>;
@@ -19,8 +19,8 @@ export interface IAsistenciasByCriteriaSearcher {
     SearchQuantityInasistenciasByYear(date: string): Promise<any>;
 
     SearchQuantityInasistenciasByAsignaturaAndAlumno(asignaturaId: string, alumnoId: string): Promise<any>;
-    SearchQuantityInasistenciasByMonthAndAlumno(asignaturaId: string, alumnoId: string): Promise<any>;
-    SearchQuantityInasistenciasByYearAndAlumno(asignaturaId: string, alumnoId: string): Promise<any>;
+    SearchQuantityInasistenciasByMonthAndAlumno(date: string, alumnoId: string): Promise<any>;
+    SearchQuantityInasistenciasByYearAndAlumno(date: string, alumnoId: string): Promise<any>;
 
 
     SearchQuantityRetrasosByCurso(cursoId: string): Promise<any>;
@@ -30,7 +30,7 @@ export interface IAsistenciasByCriteriaSearcher {
     SearchQuantityRetrasosByYear(date: string): Promise<any>;
 
     SearchQuantityRetrasosByAsignaturaAndAlumno(asignaturaId: string, alumnoId: string): Promise<any>;
-    SearchQuantityRetrasosByMonthAndAlumno(asignaturaId: string, alumnoId: string): Promise<any>;
-    SearchQuantityRetrasosByYearAndAlumno(asignaturaId: string, alumnoId: string): Promise<any>;
+    SearchQuantityRetrasosByMonthAndAlumno(date: string, alumnoId: string): Promise<any>;
+    SearchQuantityRetrasosByYearAndAlumno(date: string, alumnoId: string): Promise<any>;
 
 }

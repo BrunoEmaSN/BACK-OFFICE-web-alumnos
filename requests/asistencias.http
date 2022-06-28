@@ -16,7 +16,7 @@ GET {{api}}/asistencias/cantidadAsistenciasByAsignatura/1
 
 // CANTIDAD DE ASISTENCIAS POR MATERIA Y ALUMNO
 ###
-GET {{api}}/asistencias/cantidadAsistenciasByAsignaturaAndAlumno/1/39819973
+GET {{api}}/asistencias/cantidadAsistenciasByAsignaturaAndAlumno/4/39819973
 
 // CANTIDAD DE ASISTENCIAS POR DIA
 ###
@@ -26,10 +26,18 @@ GET {{api}}/asistencias/cantidadAsistenciasByDay/Lunes
 // CANTIDAD DE ASISTENCIAS POR MES
 GET {{api}}/asistencias/cantidadAsistenciasByMonth/02
 
+// CANTIDAD DE ASISTENCIAS POR MES Y ALUMNO
+###
+GET  {{api}}/asistencias/cantidadAsistenciasByMonthAndAlumno/03/39819973
+
+
 ###
 // CANTIDAD DE ASISTENCIAS POR AÑO
 GET {{api}}/asistencias/cantidadAsistenciasByYear/2022
 
+###
+// CANTIDAD DE ASISTENCIAS POR AÑO Y ALUMNO
+GET {{api}}/asistencias/cantidadAsistenciasByYearAndAlumno/2022/39819973
 
 // CANTIDAD DE INASISTENCIAS POR CURSO
 ###
@@ -40,6 +48,9 @@ GET {{api}}/asistencias/cantidadInasistenciasByCurso/2
 ###
 GET {{api}}/asistencias/cantidadInasistenciasByAsignatura/2
 
+###
+// CANTIDAD DE INASISTENCIAS POR MATERIA Y ALUMNO 
+GET {{api}}/asistencias/cantidadInasistenciasByAsignaturaAndAlumno/1/39819973
 
 // CANTIDAD DE INASISTENCIAS POR DIA
 ###
@@ -49,10 +60,18 @@ GET {{api}}/asistencias/cantidadInasistenciasByDay/Viernes
 // CANTIDAD DE INASISTENCIAS POR MES
 GET {{api}}/asistencias/cantidadInasistenciasByMonth/03
 
+
+### 
+// CANTIDAD DE INASISETNCIAS POR MES Y ALUMNO
+GET  {{api}}/asistencias/cantidadInasistenciasByMonthAndAlumno/03/39819973
+
 ###
 // CANTIDAD DE INASISTENCIAS POR AÑO
 GET {{api}}/asistencias/cantidadInasistenciasByYear/2022
 
+###
+// CANTIDAD DE INASISTENCIAS POR AÑO Y ALUMNO
+GET {{api}}/asistencias/cantidadInasistenciasByYearAndAlumno/2022/39819973
 
 // CANTIDAD DE RETRASOS POR CURSO
 ###
@@ -62,6 +81,11 @@ GET {{api}}/asistencias/cantidadRetrasosByCurso/1
 // CANTIDAD DE RETRASOS POR MATERIA
 ###
 GET {{api}}/asistencias/cantidadRetrasosByAsignatura/5
+
+###
+// CANTIDAD DE RETRASOS POR MATERIA Y ALUMNO
+GET {{api}}/asistencias/cantidadRetrasosByAsignaturaAndAlumno/1/39819973
+
 
 
 // CANTIDAD DE RETRASOS POR DIA
@@ -73,5 +97,15 @@ GET {{api}}/asistencias/cantidadRetrasosByDay/Jueves
 GET {{api}}/asistencias/cantidadRetrasosByMonth/02
 
 ###
+// CANTIDAD DE RETRASOS POR MES Y ALUMNO
+GET  {{api}}/asistencias/cantidadRetrasosByMonthAndAlumno/01/39819973
+
+
+###
 // CANTIDAD DE RETRASOS POR AÑO
 GET {{api}}/asistencias/cantidadRetrasosByYear/2022
+
+###
+// CANTIDAD DE RETRASOS POR AÑO Y ALUMNO
+GET {{api}}/asistencias/cantidadRetrasosByYearAndAlumno/2022/39819973
+

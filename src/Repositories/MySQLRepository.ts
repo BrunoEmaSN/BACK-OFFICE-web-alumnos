@@ -13,7 +13,7 @@ export class MySQLRepository implements IMySQLRepository {
     }
 
     public async getAllByParams(params: Array<any>, query: string): Promise<any> {
-        const [result]: any = await connector.execute(query, [params]);
+        const [result]: any = await connector.execute(query, params);
         return result;
     }
 
