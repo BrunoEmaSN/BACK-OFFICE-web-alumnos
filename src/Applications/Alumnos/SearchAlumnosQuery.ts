@@ -65,7 +65,6 @@ const CalificacionesAverageByMateria = `SELECT
     AVG(c.nota) AS nota
 FROM calificaciones AS c
 INNER JOIN materias AS m ON m.id = c.materia_id
-WHERE c.materia_id = ?
 GROUP BY m.descripcion`;
 
 export default {
