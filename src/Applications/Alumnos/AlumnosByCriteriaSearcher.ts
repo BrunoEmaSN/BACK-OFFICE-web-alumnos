@@ -32,8 +32,8 @@ export class AlumnosByCriteriaSearcher implements IAlumnosByCriteriaSearcher {
         return await this._mysqlRepository.getAll(query.QuantityAlumnosWithdrawn);
     }
 
-    public async SearchMateriasStatusByAlumno(alumnoId: string){
-        return await this._mysqlRepository.getOne(alumnoId, query.MateriasStatusByAlumno);
+    public async SearchMateriasStatusByAlumno(){
+        return await this._mysqlRepository.getAll(query.MateriasStatusByAlumno);
     }
 
     public async SearchCalificacionesAverageByAlumno(alumnoId: string){
